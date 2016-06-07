@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.lucio.mapper.AccountMapper">
+
+	<insert id="insertUser" parameterType="Account">
+        insert into account(id,username,password,email,address)values(#{id},#{username},#{password},#{email},#{address})
+    </insert>
+
+ 
+  <resultMap id="AccountResult" type="com.lucio.model.Account" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getUserByUsername" resultMap="AccountResult" parameterType="string" >
+    select id,username,password,email,address from account where username=#{username}
+  </select>
+  
+   <update id="updateByUserName" parameterType="Account">
+   update account set id=#{id},password=#{password},email=#{email},address=#{address} where username=#{username}
+   </update>  
+  
+  <delete id="deleteByUserName" parameterType="Account">
+     delete from account where username=#{username}
+  </delete>
+  
+   <!-- 
+   <insert id="addUser" parameterType="com.huawei.nser.standard.values.ECUserValue">
+       insert into ec_user(msisdn, sub_id, pwd, active_time,remark) values(#{msisdn}, #{sub_id}, #{pwd}, #{active_time},#{remark})
+  </insert>
+
+  -->
+    
+</mapper>
+

@@ -1,0 +1,7 @@
+<beans>
+	<bean id = "ad" class = "com.lucio.dao.AccountDao"/>
+
+	<bean id = "accountController" class = "com.lucio.controller.AccountController">
+		<property name = "accountDao" bean = "ad"/>
+	</bean>
+</beans>
